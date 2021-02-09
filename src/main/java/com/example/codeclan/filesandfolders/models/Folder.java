@@ -67,9 +67,9 @@ public class Folder {
     }
 
 //   can add files
-    public void addFile(File file){
-        this.files.add(file);
-    }
+//    public void addFile(File file){
+//        this.files.add(file);
+//    }
 
 
     public Folder(){

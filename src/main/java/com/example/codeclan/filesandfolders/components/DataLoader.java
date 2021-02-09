@@ -9,10 +9,13 @@ import com.example.codeclan.filesandfolders.repositories.FolderRepository;
 import com.example.codeclan.filesandfolders.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import javax.xml.crypto.Data;
+
 @Component
-public class DataLoader {
+public class DataLoader implements ApplicationRunner {
 
 //    instantiate each repository type here
 
@@ -25,43 +28,36 @@ public class DataLoader {
     @Autowired
     FolderRepository folderRepository;
 
-//Seeds for db
     public DataLoader(){
 
-        User pedzilla = new User("Pedram");
-        userRepository.save(pedzilla);
+    }
 
-        Folder codeclan = new Folder("Codeclan Stuff", pedzilla);
-        folderRepository.save(codeclan);
+//Seeds for db
+    public void run(ApplicationArguments args){
 
-        Folder screenshots = new Folder("Screenshots", pedzilla);
-        folderRepository.save(screenshots);
+        User user1 = new User("Pedram");
+        userRepository.save(user1);
 
-        File homework = new File("homework", ".pdf", "30mb", codeclan);
-        fileRepository.save(homework);
+        User user2 = new User("Michael");
+        userRepository.save(user2);
 
-        File shoes = new File("Shoes", ".jpg", "50mb", screenshots);
-        fileRepository.save(shoes);
+        Folder folder = new Folder("Videos", user1);
+        folderRepository.save(folder);
 
-        File cv = new File("CV", ".txt", "100mb", codeclan);
-        fileRepository.save(cv);
+        Folder folder2 = new Folder("Games", user1);
+        folderRepository.save(folder2);
 
-        File halloween = new File("Halloween dress up", ".jpg", "200mb", screenshots);
-        fileRepository.save(halloween);
+        Folder folder3 = new Folder("Trips", user2);
+        folderRepository.save(folder3);
 
-        codeclan.addFile(homework);
-        codeclan.addFile(cv);
-        screenshots.addFile(shoes);
-        screenshots.addFile(halloween);
+        File file = new File("Tech book", "PDF", "100mb", folder);
+        fileRepository.save(file);
 
-        folderRepository.save(codeclan);
-        folderRepository.save(screenshots);
+        File  file2 = new File("holiday pic1", "png", "200mb", folder2);
+        fileRepository.save(file2);
 
-        pedzilla.addFolder(codeclan);
-        pedzilla.addFolder(screenshots);
-
-        userRepository.save(pedzilla);
-
+        File file3 = new File("holiday pic2", "png", "300mb", folder2);
+        fileRepository.save(file3);
 
     }
 

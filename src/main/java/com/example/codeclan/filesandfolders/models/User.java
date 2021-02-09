@@ -61,9 +61,9 @@ public class User {
     }
 
 //    user can have a folder added to them
-    public void addFolder(Folder folder){
-        this.folders.add(folder);
-    }
+//    public void addFolder(Folder folder){
+//        this.folders.add(folder);
+//    }
 
 
 }
